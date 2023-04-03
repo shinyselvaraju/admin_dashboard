@@ -1,0 +1,35 @@
+{
+  "users":[
+    {
+      "name": "John Michael",
+      "email": "john@gmail.com",
+      "job": ["Manager", "Organization"],
+      "online": true,
+      "date": "23/04/18"
+    },
+    {
+      "name": "John Michael",
+      "email": "john@gmail.com",
+      "job": ["Manager", "Organization"],
+      "online": true,
+      "date": "23/04/18"
+      
+    },
+    {   
+      "name": "John Michael",
+      "email": "john@gmail.com",
+      "job": ["Manager", "Organization"],
+      "online": true,
+      "date": "23/04/18"
+      
+    },
+    {
+        "name": "John Michael",
+        "email": "john@gmail.com",
+        "job": ["Manager", "Organization"],
+        "online": true,
+        "date": "23/04/18"
+    }
+  ]
+}
+  
