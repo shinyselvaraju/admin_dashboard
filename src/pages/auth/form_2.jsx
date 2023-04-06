@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./form.css"
 import { Link, useNavigate } from 'react-router-dom'
 import {
   Card,
@@ -8,20 +7,24 @@ import {
   CardBody,
   CardFooter,
   Input,
-  Checkbox,
   Button,
   Typography,
-  Grid,
+  Radio,
 } from "@material-tailwind/react";
 
+
 const apiUrl = "http://localhost:8080"
-const ContactForm2 = () => {
+export const ContactForm2 = () => {
   const [formData, setFormData] = useState({
     accountname: "",
     email: "",
     name: "",
     website: "",
-    address: "",
+    address1: "",
+    address2: "",
+    city: "",
+    zipcode: "",
+    state: "",
     phone: "",
     sci: "",
     scn: "",
@@ -29,9 +32,18 @@ const ContactForm2 = () => {
     ts: "",
     twilio: "",
     ringcentral: "",
+    highid: "",
+    hightoken: "",
+    highkey: "",
+    highsecret: "",
+    highphone: "",
+    sendid: "",
+    sendtoken: "",
+    sendphone: "",
   });
 
-  const [showOptions, setShowOptions] = useState(false);
+
+  const [showOptions, setShowOptions] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
 
   // const handleOptionChange = (event) => {
@@ -47,6 +59,13 @@ const ContactForm2 = () => {
     setSelectedOption(event.target.value);
     setShowOptions(event.target.value);
   };
+
+  const apiHandleChange = (event) =>{
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -76,44 +95,54 @@ const ContactForm2 = () => {
             className="mb-4 grid h-50 place-items-center"
           >
             <Typography variant="h3" color="white">
-              Account Details
+               Streamline Account Details
             </Typography>
           </CardHeader>
           <CardBody className="flex flex-col gap-4">
-            <Input label="Streamline ID" size="lg" id="sci" name="sci" value={formData.sci}
+            <Input label="Streamline ID" size="lg"  name="sci" value={formData.sci}
               onChange={handleChange}
               required />
-            <Input label="Streamline Company Name" size="lg" id="scn" name="scn" value={formData.scn}
+            <Input label="Streamline Company Name" size="lg"  name="scn" value={formData.scn}
               onChange={handleChange}
               required />
-            <Input type="text" label="Token Name" size="lg" id="email" name="tk" value={formData.tk}
+            <Input  label="Token Key" size="lg"  name="tk" value={formData.tk}
               onChange={handleChange}
               required />
-            <Input type="text" label="Token Secret" size="lg" id="address" name="ts" value={formData.ts}
+            <Input  label="Token Secret" size="lg"  name="ts" value={formData.ts}
               onChange={handleChange}
               required />
-            <div className="-ml-2.5">
-              <Checkbox label="Ring Central" id="ring"
-                    name="options"
-                    checked={selectedOption === "ring"}
-                    onChange={handleChange}
-                    value="ring"  />
-              <Checkbox label="Twillio" id="twillio"
-                    name="options"
-                    checked={selectedOption === "twi"}
-                    onChange={handleChange}
-                    value="twi"/>
-            </div> 
+            
+                <div className="flex gap-10">
+                    <Radio
+                      name="type"
+                      label="Ringle Central"
+                      // ripple={true}
+                      id="ring"
+                      checked={selectedOption === "ring"}
+                      onChange={handleChange}
+                      value="ring" 
+                    />
+                    <Radio
+                      name="type"
+                      label="Twillio"
+                      // ripple={false}
+                      id="twilio"
+                      checked={selectedOption === "twi"}
+                      onChange={handleChange}
+                      value="twi"
+                    />
+                </div>
+            
             {showOptions === "ring" && (
                 <Input type="text" label="Ring Central" name="ringcentral" size="lg" id="ringcentral"
             value={formData.ringcentral}
-            onChange={handleChange}
+            onChange={apiHandleChange}
             required/>  
             )}    
             {showOptions === "twi" && (
-                <Input type="text" label="Twillio" size="lg" name="twillio" id="twillio"
-            value={formData.ringcentral}
-            onChange={handleChange}
+                <Input type="text" label="Twilio" size="lg" name="twilio" id="twilio"
+            value={formData.twilio}
+            onChange={apiHandleChange}
             required/>  
             )}      
           </CardBody>

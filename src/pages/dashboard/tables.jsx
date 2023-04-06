@@ -30,7 +30,6 @@ export function Tables() {
           <Typography variant="h6" color="white">
             User Data <Link to="/dashboard/create"><Button className="rounded-full bg-white text-black">+</Button></Link>
           </Typography>
-          
         </CardHeader>
         <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
           <table className="w-full min-w-[640px] table-auto">

@@ -12,6 +12,7 @@ import {
   setOpenConfigurator,
   setSidenavType,
 } from "@/context";
+import { Link } from "react-router-dom";
 
 function formatNumber(number, decPlaces) {
   decPlaces = Math.pow(10, decPlaces);
@@ -112,6 +113,14 @@ export function Configurator() {
               White
             </Button>
           </div>
+          <div className="pt-12">
+            <Link to="/">
+              <Button variant="outline">
+                  Log Out
+              </Button>
+            </Link>
+          </div>
+          
         </div>
       </div>
     </aside>
