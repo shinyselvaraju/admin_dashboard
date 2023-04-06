@@ -115,7 +115,7 @@ export const ContactForm2 = () => {
                 <div className="flex gap-10">
                     <Radio
                       name="type"
-                      label="Ringle Central"
+                      label="Ring Central"
                       // ripple={true}
                       id="ring"
                       checked={selectedOption === "ring"}
@@ -134,13 +134,13 @@ export const ContactForm2 = () => {
                 </div>
             
             {showOptions === "ring" && (
-                <Input type="text" label="Ring Central" name="ringcentral" size="lg" id="ringcentral"
+                <Input type="JWT/Phone Number" label="Ring Central" name="ringcentral" size="lg" id="ringcentral"
             value={formData.ringcentral}
             onChange={apiHandleChange}
             required/>  
             )}    
             {showOptions === "twi" && (
-                <Input type="text" label="Twilio" size="lg" name="twilio" id="twilio"
+                <Input type="Sid/Phone Number" label="Twilio" size="lg" name="twilio" id="twilio"
             value={formData.twilio}
             onChange={apiHandleChange}
             required/>  

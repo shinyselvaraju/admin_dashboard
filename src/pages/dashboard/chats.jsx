@@ -109,7 +109,7 @@ export function Chats() {
 
 
                 <Input label="Message you want to enter" size="lg" id="scn" name="scn"
-                  required onChange={handleSec2Input} value={sec2Input}/>
+                  required onChange={handleSec2Input} value={sec2Input} />
               )}
 
             </div>
@@ -118,12 +118,12 @@ export function Chats() {
 
 
             <div className="-ml-2.5">
-              <Checkbox label="Yes" 
+              <Checkbox label="Yes"
                 name="options"
                 checked={showOptions3 === "1"}
                 onChange={handleChangeSec3}
                 value="1" />
-              <Checkbox label="No" 
+              <Checkbox label="No"
                 name="options"
                 checked={showOptions3 === "2"}
                 onChange={handleChangeSec3}
@@ -141,12 +141,20 @@ export function Chats() {
 
           </CardBody>
           <CardFooter className="pt-0">
+            <div className="mb-2 flex gap-3">
+              <Button variant="gradient" fullWidth onClick={handleSubmit} >
+                Save
+              </Button>
+              <Link to="/dashboard/tables">
+                <Button variant="gradient" fullWidth >
+                  Back
+                </Button></Link>
 
-            <Button variant="gradient" fullWidth onClick={handleSubmit} >
+            </div>
 
-              Sign Up
 
-            </Button>
+
+
 
           </CardFooter>
         </Card>

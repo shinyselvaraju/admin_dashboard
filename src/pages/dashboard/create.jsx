@@ -1,4 +1,7 @@
 import React from 'react'
+import {
+    Button
+  } from "@material-tailwind/react";
 
 export const Create = () => {
     return (
@@ -57,6 +60,9 @@ export const Create = () => {
                         <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="text" placeholder="90210" />
                     </div>
                 </div>
+                <Button variant="gradient" fullWidth >
+                  Submit
+                </Button>
             </form>
         </div>
     )
