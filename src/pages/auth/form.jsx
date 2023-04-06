@@ -29,6 +29,12 @@ export const ContactForm = () => {
     city: "",
     zipcode: "",
     state: "",
+    address1: "",
+    address2: "",
+    password: "",
+    city: "",
+    zipcode: "",
+    state: "",
     phone: "",
     sci: "",
     scn: "",
@@ -36,6 +42,14 @@ export const ContactForm = () => {
     ts: "",
     twilio: "",
     ringcentral: "",
+    highid: "",
+    hightoken: "",
+    highkey: "",
+    highsecret: "",
+    highphone: "",
+    sendid: "",
+    sendtoken: "",
+    sendphone: "",
     highid: "",
     hightoken: "",
     highkey: "",
@@ -100,8 +114,10 @@ export const ContactForm = () => {
               onChange={handleChange}
               required />
             <Input type="address" label="Address 1" size="lg" name="address1" id="address1" value={formData.address1}
+            <Input type="address" label="Address 1" size="lg" name="address1" id="address1" value={formData.address1}
               onChange={handleChange}
               required />
+            <Input type="address" label="Address 2" size="lg" name="address2" id="address2" value={formData.address2}
             <Input type="address" label="Address 2" size="lg" name="address2" id="address2" value={formData.address2}
               onChange={handleChange}
             />
@@ -114,7 +130,26 @@ export const ContactForm = () => {
                 onChange={handleChange}
               />
 
+            />
+            <div className="mb-2 flex gap-3">
+              <Input  label="City" size="lg" name="city" id="city" value={formData.city}
+                onChange={handleChange}
+              />
 
+              <Input  label="State" size="lg" name="state" id="state" value={formData.state}
+                onChange={handleChange}
+              />
+
+
+            </div>
+            <Input  label="Zip Code" size="lg" name="zipcode" id="zipcode" value={formData.zipcode}
+              onChange={handleChange}
+            />
+            <div className="mb-2 flex gap-3">
+              <Input type="email" label="Email" size="lg" name="email" id="email" value={formData.email}
+                onChange={handleChange}
+                required />
+              <Input type="phone" label="Phone" size="lg" id="phone" name="phone" value={formData.phone}
             </div>
             <Input  label="Zip Code" size="lg" name="zipcode" id="zipcode" value={formData.zipcode}
               onChange={handleChange}
@@ -143,10 +178,12 @@ export const ContactForm = () => {
             </div>
           </CardBody>
           {/* <CardFooter className="pt-0">
+          {/* <CardFooter className="pt-0">
             <Link to="/registration">
             <Button variant="gradient" fullWidth>
               Next
             </Button></Link>
+          </CardFooter> */}
           </CardFooter> */}
         </Card>
       </div>
