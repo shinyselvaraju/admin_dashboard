@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./form.css"
 import { Link, useNavigate } from 'react-router-dom'
 import {
   Card,
@@ -14,14 +13,18 @@ import {
   Grid,
 } from "@material-tailwind/react";
 
-const apiUrl = "http://localhost:8081"
+const apiUrl = "http://localhost:8080"
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     accountname: "",
     email: "",
     name: "",
     website: "",
-    address: "",
+    address1: "",
+    address2: "",
+    city: "",
+    zipcode: "",
+    state: "",
     phone: "",
     sci: "",
     scn: "",
@@ -29,6 +32,14 @@ const ContactForm = () => {
     ts: "",
     twilio: "",
     ringcentral: "",
+    highid: "",
+    hightoken: "",
+    highkey: "",
+    highsecret: "",
+    highphone: "",
+    sendid: "",
+    sendtoken: "",
+    sendphone: "",
   });
 
   const [showOptions, setShowOptions] = useState(false);
@@ -49,7 +60,6 @@ const ContactForm = () => {
   };
 
   const handleSubmit = (event) => {
-    console.log("-----handleSubmit-----form")
     event.preventDefault();
     // Send form data to server or handle form submission
     axios({
@@ -60,7 +70,6 @@ const ContactForm = () => {
       }
     })
     console.log(formData);
-
   };
 
   return (
@@ -71,7 +80,7 @@ const ContactForm = () => {
     /> */}
       <div className="absolute inset-0 z-0 h-full w-full bg-black/50" />
       <div className="container mx-auto p-4">
-        <Card className="absolute top-2/4 left-2/4 w-full max-w-[30rem] -translate-y-2/4 -translate-x-2/4">
+        <Card className="absolute top-2/4 left-2/4 w-full max-w-[30rem] -translate-y-2/4 -translate-x-2/4" onSubmit={handleSubmit}>
           <CardHeader
             variant="gradient"
             color="blue"
@@ -88,26 +97,55 @@ const ContactForm = () => {
             <Input label="Name" size="lg" id="name" name="name" value={formData.name}
               onChange={handleChange}
               required />
-            <Input type="email" label="Email" size="lg" name="email" id="email" value={formData.email}
+            <Input type="address" label="Address 1" size="lg" name="address1" id="address1" value={formData.address1}
               onChange={handleChange}
               required />
-            <Input type="address" label="Address" size="lg" name="address" id="address" value={formData.address}
+            <Input type="address" label="Address 2" size="lg" name="address2" id="address2" value={formData.address2}
               onChange={handleChange}
-              required />
+            />
+            <div className="mb-2 flex gap-3">
+              <Input type="text" label="City" size="lg" name="city" id="city" value={formData.city}
+                onChange={handleChange}
+              />
 
-            <Input type="phone" label="Phone" size="lg" id="phone" name="phone" value={formData.phone}
+              <Input type="text" label="State" size="lg" name="state" id="state" value={formData.state}
+                onChange={handleChange}
+              />
+
+
+            </div>
+            <Input type="text" label="Zip Code" size="lg" name="zipcode" id="zipcode" value={formData.zipcode}
               onChange={handleChange}
-              required />
-              <Input type="text" label="Website" size="lg" id="website" name="website" value={formData.website}
+            />
+            <div className="mb-2 flex gap-3">
+              <Input type="email" label="Email" size="lg" name="email" id="email" value={formData.email}
                 onChange={handleChange}
                 required />
+              <Input type="phone" label="Phone" size="lg" id="phone" name="phone" value={formData.phone}
+                onChange={handleChange}
+                required />
+
+            </div>
+
+
+
+
+
+            <Input type="text" label="Website" size="lg" id="website" name="website" value={formData.website}
+              onChange={handleChange}
+              required />
+            <div className="flex w-max gap-4">
+              <Link to="/streamlineregistration"> <Button variant="text">Streamline</Button></Link>
+              <Link to="/sendsquaredregistration"><Button variant="text">Send Squared</Button></Link>
+              <Link to="/highlevelregistration"><Button variant="text">High Level</Button></Link>
+            </div>
           </CardBody>
-          <CardFooter className="pt-0">
-            <Link to="/registration" state={{partialFormData: formData}}>
+          {/* <CardFooter className="pt-0">
+            <Link to="/registration">
             <Button variant="gradient" fullWidth>
               Next
             </Button></Link>
-          </CardFooter>
+          </CardFooter> */}
         </Card>
       </div>
     </>
