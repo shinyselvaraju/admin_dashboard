@@ -15,6 +15,9 @@ import {
 
 const apiUrl = "http://localhost:8080"
 const ContactForm = () => {
+
+  //const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     accountname: "",
     email: "",
@@ -22,6 +25,7 @@ const ContactForm = () => {
     website: "",
     address1: "",
     address2: "",
+    password: "",
     city: "",
     zipcode: "",
     state: "",
@@ -70,6 +74,7 @@ const ContactForm = () => {
       }
     })
     console.log(formData);
+    
   };
 
   return (
@@ -94,6 +99,9 @@ const ContactForm = () => {
             <Input label="Account Name" size="lg" name="accountname" id="accountname" value={formData.accountname}
               onChange={handleChange}
               required />
+              <Input type="password" label="Password" size="lg" name="password" value={formData.password}
+              onChange={handleChange}
+              required />
             <Input label="Name" size="lg" id="name" name="name" value={formData.name}
               onChange={handleChange}
               required />
@@ -104,17 +112,17 @@ const ContactForm = () => {
               onChange={handleChange}
             />
             <div className="mb-2 flex gap-3">
-              <Input type="text" label="City" size="lg" name="city" id="city" value={formData.city}
+              <Input  label="City" size="lg" name="city" id="city" value={formData.city}
                 onChange={handleChange}
               />
 
-              <Input type="text" label="State" size="lg" name="state" id="state" value={formData.state}
+              <Input  label="State" size="lg" name="state" id="state" value={formData.state}
                 onChange={handleChange}
               />
 
 
             </div>
-            <Input type="text" label="Zip Code" size="lg" name="zipcode" id="zipcode" value={formData.zipcode}
+            <Input  label="Zip Code" size="lg" name="zipcode" id="zipcode" value={formData.zipcode}
               onChange={handleChange}
             />
             <div className="mb-2 flex gap-3">

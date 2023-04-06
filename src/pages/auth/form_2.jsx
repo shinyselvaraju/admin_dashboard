@@ -43,7 +43,7 @@ const ContactForm2 = () => {
   });
 
 
-  const [showOptions, setShowOptions] = useState(false);
+  const [showOptions, setShowOptions] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
 
   // const handleOptionChange = (event) => {
@@ -59,6 +59,13 @@ const ContactForm2 = () => {
     setSelectedOption(event.target.value);
     setShowOptions(event.target.value);
   };
+
+  const apiHandleChange = (event) =>{
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -92,16 +99,16 @@ const ContactForm2 = () => {
             </Typography>
           </CardHeader>
           <CardBody className="flex flex-col gap-4">
-            <Input label="Streamline ID" size="lg" id="sci" name="sci" value={formData.sci}
+            <Input label="Streamline ID" size="lg"  name="sci" value={formData.sci}
               onChange={handleChange}
               required />
-            <Input label="Streamline Company Name" size="lg" id="scn" name="scn" value={formData.scn}
+            <Input label="Streamline Company Name" size="lg"  name="scn" value={formData.scn}
               onChange={handleChange}
               required />
-            <Input type="text" label="Token Key" size="lg" id="email" name="tk" value={formData.tk}
+            <Input  label="Token Key" size="lg"  name="tk" value={formData.tk}
               onChange={handleChange}
               required />
-            <Input type="text" label="Token Secret" size="lg" id="address" name="ts" value={formData.ts}
+            <Input  label="Token Secret" size="lg"  name="ts" value={formData.ts}
               onChange={handleChange}
               required />
             
@@ -109,7 +116,7 @@ const ContactForm2 = () => {
                     <Radio
                       name="type"
                       label="Ringle Central"
-                      ripple={true}
+                      // ripple={true}
                       id="ring"
                       checked={selectedOption === "ring"}
                       onChange={handleChange}
@@ -118,7 +125,7 @@ const ContactForm2 = () => {
                     <Radio
                       name="type"
                       label="Twillio"
-                      ripple={false}
+                      // ripple={false}
                       id="twilio"
                       checked={selectedOption === "twi"}
                       onChange={handleChange}
@@ -129,13 +136,13 @@ const ContactForm2 = () => {
             {showOptions === "ring" && (
                 <Input type="text" label="Ring Central" name="ringcentral" size="lg" id="ringcentral"
             value={formData.ringcentral}
-            onChange={handleChange}
+            onChange={apiHandleChange}
             required/>  
             )}    
             {showOptions === "twi" && (
                 <Input type="text" label="Twilio" size="lg" name="twilio" id="twilio"
             value={formData.twilio}
-            onChange={handleChange}
+            onChange={apiHandleChange}
             required/>  
             )}      
           </CardBody>
