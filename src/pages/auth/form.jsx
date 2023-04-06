@@ -14,7 +14,7 @@ import {
   Grid,
 } from "@material-tailwind/react";
 
-const apiUrl = "http://localhost:8080"
+const apiUrl = "http://localhost:8081"
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     accountname: "",
@@ -49,6 +49,7 @@ const ContactForm = () => {
   };
 
   const handleSubmit = (event) => {
+    console.log("-----handleSubmit-----form")
     event.preventDefault();
     // Send form data to server or handle form submission
     axios({
@@ -59,6 +60,7 @@ const ContactForm = () => {
       }
     })
     console.log(formData);
+
   };
 
   return (
@@ -69,7 +71,7 @@ const ContactForm = () => {
     /> */}
       <div className="absolute inset-0 z-0 h-full w-full bg-black/50" />
       <div className="container mx-auto p-4">
-        <Card className="absolute top-2/4 left-2/4 w-full max-w-[30rem] -translate-y-2/4 -translate-x-2/4" onSubmit={handleSubmit}>
+        <Card className="absolute top-2/4 left-2/4 w-full max-w-[30rem] -translate-y-2/4 -translate-x-2/4">
           <CardHeader
             variant="gradient"
             color="blue"
@@ -101,7 +103,7 @@ const ContactForm = () => {
                 required />
           </CardBody>
           <CardFooter className="pt-0">
-            <Link to="/registration">
+            <Link to="/registration" state={{partialFormData: formData}}>
             <Button variant="gradient" fullWidth>
               Next
             </Button></Link>

@@ -3,7 +3,7 @@ import {
   TableCellsIcon,
 
 } from "@heroicons/react/24/solid";
-import { Home, Tables, Create} from "@/pages/dashboard";
+import { Home, Tables, Create , Chats } from "@/pages/dashboard";
 
 const icon = {
   className: "w-5 h-5 text-inherit",
@@ -30,6 +30,12 @@ export const routes = [
         name: "create user",
         path: "/create",
         element: <Create />,
+      },
+      {
+        icon: <TableCellsIcon {...icon} />,
+        name: "Chat Managment",
+        path: "/chats",
+        element: <Chats />,
       },
     ],
   },

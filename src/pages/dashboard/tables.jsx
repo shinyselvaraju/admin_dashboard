@@ -36,7 +36,7 @@ export function Tables() {
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
-                {["Name", "Pos", "Status", "", ""].map((el) => (
+                {["Name", "Pos", "Status","",""].map((el) => (
                   <th
                     key={el}
                     className="border-b border-blue-gray-50 py-3 px-5 text-left"
@@ -106,6 +106,15 @@ export function Tables() {
                           className="text-xs font-semibold text-blue-gray-600"
                         >
                           <Button className="rounded-full bg-white text-black">Edit</Button>
+                        </Typography>
+                      </td>
+                      <td className={className}>
+                        <Typography
+                          as="a"
+                          href="#"
+                          className="text-xs font-semibold text-blue-gray-600"
+                        >
+                          <Link to="/dashboard/chats"> <Button className="rounded-full bg-white text-black">Chats</Button> </Link>
                         </Typography>
                       </td>
                     </tr>
