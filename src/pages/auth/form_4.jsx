@@ -75,9 +75,8 @@ export const ContactForm4 = () => {
 
   return (
     <>
-      <div className="absolute inset-0 z-0 h-full w-full bg-black/50" />
+      <div className="bg-white/50" />
       <div className="container mx-auto p-4">
-        <Card className="absolute top-2/4 left-2/4 w-full max-w-[30rem] -translate-y-2/4 -translate-x-2/4">
           <CardHeader
             variant="gradient"
             color="blue"
@@ -87,7 +86,7 @@ export const ContactForm4 = () => {
                HighLevel Account Details
             </Typography>
           </CardHeader>
-          <CardBody className="flex flex-col gap-4">
+          <CardBody className="flex flex-col w-96 gap-4">
             <Input label="Company ID" size="lg" id="highid" name="highid" value={formData.highid}
               onChange={handleChange}
               required />
@@ -104,13 +103,10 @@ export const ContactForm4 = () => {
               onChange={handleChange}
               required />   
           </CardBody>
-          <CardFooter className="pt-0">
             <Link to="/dashboard">
-                <Button variant="gradient" fullWidth>
-              Sign Up
+                <Button variant="gradient" className="w-96">
+              Save
             </Button></Link>
-          </CardFooter>
-        </Card>
       </div>
     </>
 

@@ -37,7 +37,7 @@ export function SignUp() {
             </div>
           </CardBody>
           <CardFooter className="pt-0">
-          <Link to="/registration">
+          <Link to="/dashboard">
             <Button variant="gradient" fullWidth>
               Sign Up
             </Button></Link>

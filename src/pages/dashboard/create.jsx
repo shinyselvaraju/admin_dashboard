@@ -1,72 +1,165 @@
-import React from 'react'
+import React, { useState } from "react";
+import axios from "axios";
+import { Link, useNavigate } from 'react-router-dom'
 import {
-    Button
-  } from "@material-tailwind/react";
+    Card,
+    CardHeader,
+    CardBody,
+    CardFooter,
+    Input,
+    Checkbox,
+    Button,
+    Typography,
+    Grid,
+} from "@material-tailwind/react";
 
+const apiUrl = "http://localhost:8080"
 export const Create = () => {
+
+    //const navigate = useNavigate();
+
+    const [formData, setFormData] = useState({
+        accountname: "",
+        email: "",
+        name: "",
+        website: "",
+        address1: "",
+        address2: "",
+        password: "",
+        city: "",
+        zipcode: "",
+        state: "",
+        address1: "",
+        address2: "",
+        password: "",
+        city: "",
+        zipcode: "",
+        state: "",
+        phone: "",
+        sci: "",
+        scn: "",
+        tk: "",
+        ts: "",
+        twilio: "",
+        ringcentral: "",
+        highid: "",
+        hightoken: "",
+        highkey: "",
+        highsecret: "",
+        highphone: "",
+        sendid: "",
+        sendtoken: "",
+        sendphone: "",
+        highid: "",
+        hightoken: "",
+        highkey: "",
+        highsecret: "",
+        highphone: "",
+        sendid: "",
+        sendtoken: "",
+        sendphone: "",
+    });
+
+    const [showOptions, setShowOptions] = useState(false);
+    const [selectedOption, setSelectedOption] = useState("");
+
+    // const handleOptionChange = (event) => {
+    //   setSelectedOption(event.target.value);
+    //   setShowOptions(event.target.value );
+    // };
+
+    const handleChange = (event) => {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value,
+        });
+        setSelectedOption(event.target.value);
+        setShowOptions(event.target.value);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // Send form data to server or handle form submission
+        axios({
+            method: "post",
+            url: apiUrl + "/save",
+            data: {
+                formData: formData
+            }
+        })
+        console.log(formData);
+
+    };
+
     return (
-        <div>
-            <form class="w-full max-w-lg">
-                <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                            First Name
-                        </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane" />
-                            <p class="text-red-500 text-xs italic">Please fill out this field.</p>
+        <>
+            <div className="absolute  bg-white/50" />
+            <div className="container mx-auto p-4">
+                <CardHeader
+                    variant="gradient"
+                    color="blue"
+                    className="mb-4 grid h-50 place-items-center"
+                    onSubmit={handleSubmit}
+                >
+                    <Typography variant="h3" color="white">
+                        Registration
+                    </Typography>
+                </CardHeader>
+                <div className="flex w-96 pl-10 flex-col gap-4">
+                    <Input label="Name" id="name" name="name" value={formData.name}
+                        onChange={handleChange}
+                        required />
+                    <Input type="address" label="Address 1" size="md" name="address1" id="address1" value={formData.address1}
+                        onChange={handleChange}
+                        required />
+                    <Input type="address" label="Address 2" size="md" name="address2" id="address2" value={formData.address2}
+                        onChange={handleChange}
+                    />
+                    <div className="mb-2 flex gap-3">
+                        <Input label="City" size="lg" name="city" id="city" value={formData.city}
+                            onChange={handleChange}
+                        />
+
+                        <Input label="State" size="lg" name="state" id="state" value={formData.state}
+                            onChange={handleChange}
+                        />
+
+
                     </div>
-                    <div class="w-full md:w-1/2 px-3">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
-                            Last Name
-                        </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe" />
+                    <Input label="Zip Code" size="lg" name="zipcode" id="zipcode" value={formData.zipcode}
+                        onChange={handleChange}
+                    />
+                    <Input label="Zip Code" size="lg" name="zipcode" id="zipcode" value={formData.zipcode}
+                        onChange={handleChange}
+                    />
+                    <div className="mb-2 flex gap-3 w-33">
+                        <Input type="email" label="Email" size="lg" name="email" id="email" value={formData.email}
+                            onChange={handleChange}
+                            required />
+                        <Input type="phone" label="Phone" size="lg" id="phone" name="phone" value={formData.phone}
+                            onChange={handleChange}
+                            required />
+
+                    </div>
+
+                    <Input type="text" label="Website" size="lg" id="website" name="website" value={formData.website}
+                        onChange={handleChange}
+                        required />
+                    <div className="flex w-max gap-4">
+                        <Link to="/dashboard/streamline"> <Button variant="text">Streamline</Button></Link>
+                        <Link to="/dashboard/sendsquared"><Button variant="text">Send Squared</Button></Link>
+                        <Link to="/dashboard/highlevel"><Button variant="text">High Level</Button></Link>
                     </div>
                 </div>
-                <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full px-3">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-                            Password
-                        </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" placeholder="******************" />
-                            <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
-                    </div>
-                </div>
-                <div class="flex flex-wrap -mx-3 mb-2">
-                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
-                            City
-                        </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Albuquerque" />
-                    </div>
-                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-                            State
-                        </label>
-                        <div class="relative">
-                            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                                <option>New Mexico</option>
-                                <option>Missouri</option>
-                                <option>Texas</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
-                            Zip
-                        </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="text" placeholder="90210" />
-                    </div>
-                </div>
-                <Button variant="gradient" fullWidth >
-                  Submit
-                </Button>
-            </form>
-        </div>
-    )
-}
+            </div>
+        </>
+
+
+    );
+};
 
 export default Create;
+
+
+
 

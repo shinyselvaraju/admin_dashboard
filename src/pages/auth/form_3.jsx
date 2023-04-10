@@ -75,9 +75,8 @@ export const ContactForm3 = () => {
       src="https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80"
       className="absolute inset-0 z-0 h-full w-full object-cover"
     /> */}
-      <div className="absolute inset-0 z-0 h-full w-full bg-black/50" />
+      <div className="bg-white/50" />
       <div className="container mx-auto p-4">
-        <Card className="absolute top-2/4 left-2/4 w-full max-w-[30rem] -translate-y-2/4 -translate-x-2/4">
           <CardHeader
             variant="gradient"
             color="blue"
@@ -87,7 +86,7 @@ export const ContactForm3 = () => {
                SendSquared Account Details
             </Typography>
           </CardHeader>
-          <CardBody className="flex flex-col gap-4">
+          <CardBody className="flex w-96 flex-col gap-4">
             <Input label="Company ID" size="lg" id="sendid" name="sendid" value={formData.sendid}
               onChange={handleChange}
               required />
@@ -98,13 +97,12 @@ export const ContactForm3 = () => {
               onChange={handleChange}
               required />
           </CardBody>
-          <CardFooter className="pt-0">
+
             <Link to="/dashboard">
-                <Button variant="gradient" fullWidth>
-              Sign Up
+                <Button variant="gradient" className="w-96">
+              Save
             </Button></Link>
-          </CardFooter>
-        </Card>
+
       </div>
     </>
 

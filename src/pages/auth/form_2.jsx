@@ -86,9 +86,8 @@ export const ContactForm2 = () => {
       src="https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80"
       className="absolute inset-0 z-0 h-full w-full object-cover"
     /> */}
-      <div className="absolute inset-0 z-0 h-full w-full bg-black/50" />
+      <div className=" bg-white/50" />
       <div className="container mx-auto p-4">
-        <Card className="absolute top-2/4 left-2/4 w-full max-w-[30rem] -translate-y-2/4 -translate-x-2/4">
           <CardHeader
             variant="gradient"
             color="blue"
@@ -98,17 +97,17 @@ export const ContactForm2 = () => {
                Streamline Account Details
             </Typography>
           </CardHeader>
-          <CardBody className="flex flex-col gap-4">
-            <Input label="Streamline ID" size="lg"  name="sci" value={formData.sci}
+          <CardBody className="w-96 flex flex-col gap-4">
+            <Input label="Streamline ID"  name="sci" value={formData.sci}
               onChange={handleChange}
               required />
-            <Input label="Streamline Company Name" size="lg"  name="scn" value={formData.scn}
+            <Input label="Streamline Company Name"   name="scn" value={formData.scn}
               onChange={handleChange}
               required />
-            <Input  label="Token Key" size="lg"  name="tk" value={formData.tk}
+            <Input  label="Token Key"  name="tk" value={formData.tk}
               onChange={handleChange}
               required />
-            <Input  label="Token Secret" size="lg"  name="ts" value={formData.ts}
+            <Input  label="Token Secret"   name="ts" value={formData.ts}
               onChange={handleChange}
               required />
             
@@ -134,25 +133,23 @@ export const ContactForm2 = () => {
                 </div>
             
             {showOptions === "ring" && (
-                <Input type="JWT/Phone Number" label="Ring Central" name="ringcentral" size="lg" id="ringcentral"
+                <Input type="JWT/Phone Number" label="Ring Central" name="ringcentral"  id="ringcentral"
             value={formData.ringcentral}
             onChange={apiHandleChange}
             required/>  
             )}    
             {showOptions === "twi" && (
-                <Input type="Sid/Phone Number" label="Twilio" size="lg" name="twilio" id="twilio"
+                <Input type="Sid/Phone Number" label="Twilio"  name="twilio" id="twilio"
             value={formData.twilio}
             onChange={apiHandleChange}
             required/>  
             )}      
           </CardBody>
-          <CardFooter className="pt-0">
+  
             <Link to="/dashboard">
-                <Button variant="gradient" fullWidth>
-              Sign Up
+                <Button variant="gradient" className="w-72">
+              Save
             </Button></Link>
-          </CardFooter>
-        </Card>
       </div>
     </>
 
