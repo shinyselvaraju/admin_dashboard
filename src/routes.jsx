@@ -17,12 +17,6 @@ export const routes = [
       {
         icon: <HomeIcon {...icon} />,
         name: "dashboard",
-        path: "/home",
-        element: <Home />,
-      },
-      {
-        icon: <TableCellsIcon {...icon} />,
-        name: "User Management",
         path: "/tables",
         element: <Tables />,
       },
@@ -32,24 +26,24 @@ export const routes = [
         path: "/create",
         element: <Create />,
       },
-      {
-        // icon: <TableCellsIcon {...icon} />,
-        // name: "Chat Managment",
-        path: "/streamline",
-        element: <ContactForm2 />,
-      },
-      {
-        // icon: <TableCellsIcon {...icon} />,
-        // name: "Chat Managment",
-        path: "/sendsquared",
-        element: <ContactForm3 />,
-      },
-      {
-        // icon: <TableCellsIcon {...icon} />,
-        // name: "Chat Managment",
-        path: "/highlevel",
-        element: <ContactForm4 />,
-      },
+      // {
+      //   // icon: <TableCellsIcon {...icon} />,
+      //   // name: "Chat Managment",
+      //   path: "/streamline",
+      //   element: <ContactForm2 />,
+      // },
+      // {
+      //   // icon: <TableCellsIcon {...icon} />,
+      //   // name: "Chat Managment",
+      //   path: "/sendsquared",
+      //   element: <ContactForm3 />,
+      // },
+      // {
+      //   // icon: <TableCellsIcon {...icon} />,
+      //   // name: "Chat Managment",
+      //   path: "/highlevel",
+      //   element: <ContactForm4 />,
+      // },
     ],
   },
 ];
