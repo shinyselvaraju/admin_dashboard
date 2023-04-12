@@ -1,76 +1,31 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from 'react-router-dom'
 import {
-  Card,
   CardHeader,
   CardBody,
-  CardFooter,
   Input,
   Button,
   Typography,
-  Radio,
 } from "@material-tailwind/react";
 
+export const ContactForm4 = ({ formData, setFormData, handleSubmit, setPage}) => {
 
-const apiUrl = "http://localhost:8080"
-export const ContactForm4 = () => {
-    const [formData, setFormData] = useState({
-        accountname: "",
-        email: "",
-        name: "",
-        website: "",
-        address1: "",
-        address2: "",
-        city: "",
-        zipcode: "",
-        state: "",
-        phone: "",
-        sci: "",
-        scn: "",
-        tk: "",
-        ts: "",
-        twilio: "",
-        ringcentral: "",
-        highid: "",
-        hightoken: "",
-        highkey: "",
-        highsecret: "",
-        highphone: "",
-        sendid: "",
-        sendtoken: "",
-        sendphone: "",
-      });
-    
-
-  const [showOptions, setShowOptions] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
-
-  // const handleOptionChange = (event) => {
-  //   setSelectedOption(event.target.value);
-  //   setShowOptions(event.target.value );
-  // };
+  const [highLevelData, setHighLevelData] = useState({
+    type: "highlevel",
+    company_id: "",
+    api_token: "",
+    client_key: "",
+    client_secrect: "",
+    phone_number: "",
+  })
 
   const handleChange = (event) => {
+    let tmp = {...highLevelData}
+    tmp[event.target.name] = event.target.value
+    setHighLevelData(tmp)
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value,
+      ["account_type"]: tmp,
     });
-    setSelectedOption(event.target.value);
-    setShowOptions(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Send form data to server or handle form submission
-    axios({
-      method: "post",
-      url: apiUrl + "/save",
-      data: {
-        formData: formData
-      }
-    })
-    console.log(formData);
   };
 
   return (
@@ -87,26 +42,30 @@ export const ContactForm4 = () => {
             </Typography>
           </CardHeader>
           <CardBody className="flex flex-col w-96 gap-4">
-            <Input label="Company ID" size="lg" id="highid" name="highid" value={formData.highid}
+            <Input label="Company ID" size="lg" id="company_id" name="company_id" value={highLevelData.company_id}
               onChange={handleChange}
               required />
-            <Input label="API Token" size="lg" id="hightoken" name="hightoken" value={formData.hightoken}
+            <Input label="API Token" size="lg" id="api_token" name="api_token" value={highLevelData.api_token}
               onChange={handleChange}
               required />
-            <Input type="text" label="Client Key" size="lg" id="highkey" name="highkey" value={formData.highkey}
+            <Input type="text" label="Client Key" size="lg" id="client_key" name="client_key" value={highLevelData.client_key}
               onChange={handleChange}
               required />
-            <Input type="text" label="Client Secret" size="lg" id="highsecret" name="highsecret" value={formData.highsecret}
+            <Input type="text" label="Client Secret" size="lg" id="client_secrect" name="client_secrect" value={highLevelData.client_secrect}
               onChange={handleChange}
               required /> 
-            <Input type="text" label="Phone Number" size="lg" id="highphone" name="highphone" value={formData.highphone}
+            <Input type="text" label="Phone Number" size="lg" id="phone_number" name="phone_number" value={highLevelData.phone_number}
               onChange={handleChange}
               required />   
           </CardBody>
-            <Link to="/dashboard">
-                <Button variant="gradient" className="w-96">
+          <div className="space-x-10">
+            <Button variant="gradient" className="w-96" onClick={handleSubmit}>
               Save
-            </Button></Link>
+            </Button>
+            <Button variant="gradient" onClick={() => setPage(-1)}>
+              back
+            </Button>
+            </div>
       </div>
     </>
 

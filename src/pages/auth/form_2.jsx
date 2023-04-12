@@ -1,84 +1,60 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from 'react-router-dom'
 import {
-  Card,
   CardHeader,
   CardBody,
-  CardFooter,
   Input,
   Button,
   Typography,
   Radio,
 } from "@material-tailwind/react";
 
+export const ContactForm2 = ({ formData, setFormData, handleSubmit, setPage}) => {
 
-const apiUrl = "http://localhost:8080"
-export const ContactForm2 = () => {
-  const [formData, setFormData] = useState({
-    accountname: "",
-    email: "",
-    name: "",
-    website: "",
-    address1: "",
-    address2: "",
-    city: "",
-    zipcode: "",
-    state: "",
-    phone: "",
-    sci: "",
-    scn: "",
-    tk: "",
-    ts: "",
-    twilio: "",
-    ringcentral: "",
-    highid: "",
-    hightoken: "",
-    highkey: "",
-    highsecret: "",
-    highphone: "",
-    sendid: "",
-    sendtoken: "",
-    sendphone: "",
-  });
-
-
-  const [showOptions, setShowOptions] = useState("");
-  const [selectedOption, setSelectedOption] = useState("");
-
-  // const handleOptionChange = (event) => {
-  //   setSelectedOption(event.target.value);
-  //   setShowOptions(event.target.value );
-  // };
+  const [streamlineData, setStreamlineData] = useState({
+    type: "streamline",
+    streamline_id: "",
+    streamline_company_name: "",
+    token_key: "",
+    token_secrect: "",
+    api_type: {
+      name: "",
+      input: ""
+    }
+  })
 
   const handleChange = (event) => {
+    let tmp = {...streamlineData}
+    tmp[event.target.name] = event.target.value
+    setStreamlineData(tmp);
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value,
-    });
-    setSelectedOption(event.target.value);
-    setShowOptions(event.target.value);
+      ["account_type"]: tmp
+    })
   };
 
-  const apiHandleChange = (event) =>{
+  const handleRadio = (event) => {
+    let tmp = {...streamlineData}
+    let api_type = {
+      name: event.target.value,
+      input: ""
+    }
+    tmp["api_type"] = api_type
+    setStreamlineData(tmp);
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value,
-    });
+      ["account_type"]: tmp
+    })
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Send form data to server or handle form submission
-    axios({
-      method: "post",
-      url: apiUrl + "/save",
-      data: {
-        formData: formData
-      }
+  const handleInput = (event) => {
+    let tmp = {...streamlineData}
+    tmp.api_type.input = event.target.value
+    setStreamlineData(tmp);
+    setFormData({
+      ...formData,
+      ["account_type"]: tmp
     })
-    console.log(formData);
-  };
+  }
 
   return (
     <>
@@ -88,68 +64,72 @@ export const ContactForm2 = () => {
     /> */}
       <div className=" bg-white/50" />
       <div className="container mx-auto p-4">
-          <CardHeader
-            variant="gradient"
-            color="blue"
-            className="mb-4 grid h-50 place-items-center"
-          >
-            <Typography variant="h3" color="white">
-               Streamline Account Details
-            </Typography>
-          </CardHeader>
-          <CardBody className="w-96 flex flex-col gap-4">
-            <Input label="Streamline ID"  name="sci" value={formData.sci}
-              onChange={handleChange}
+        <CardHeader
+          variant="gradient"
+          color="blue"
+          className="mb-4 grid h-50 place-items-center"
+        >
+          <Typography variant="h3" color="white">
+            Streamline Account Details
+          </Typography>
+        </CardHeader>
+        <CardBody className="w-96 flex flex-col gap-4">
+          <Input label="Streamline ID" name="streamline_id" value={streamlineData.streamline_id}
+            onChange={handleChange}
+            required />
+          <Input label="Streamline Company Name" name="streamline_company_name" value={streamlineData.streamline_company_name}
+            onChange={handleChange}
+            required />
+          <Input label="Token Key" name="token_key" value={streamlineData.token_key}
+            onChange={handleChange}
+            required />
+          <Input label="Token Secret" name="token_secrect" value={streamlineData.token_secrect}
+            onChange={handleChange}
+            required />
+
+          <div className="flex gap-10">
+            <Radio
+              name="type"
+              label="Ring Central"
+              // ripple={true}
+              id="ring"
+              checked={streamlineData.api_type.name === "ring"}
+              onChange={handleRadio}
+              value="ring"
+            />
+            <Radio
+              name="type"
+              label="Twillio"
+              // ripple={false}
+              id="twilio"
+              checked={streamlineData.api_type.name === "twillio"}
+              onChange={handleRadio}
+              value="twillio"
+            />
+          </div>
+
+          {streamlineData.api_type.name === "ring" && (
+            <Input type="JWT/Phone Number" label="Ring Central" name="ringcentral" id="ringcentral"
+              value={streamlineData.api_type.input}
+              onChange={handleInput}
               required />
-            <Input label="Streamline Company Name"   name="scn" value={formData.scn}
-              onChange={handleChange}
+          )}
+          {streamlineData.api_type.name === "twillio" && (
+            <Input type="Sid/Phone Number" label="Twillio" name="twillio" id="twillio"
+              value={streamlineData.api_type.input}
+              onChange={handleInput}
               required />
-            <Input  label="Token Key"  name="tk" value={formData.tk}
-              onChange={handleChange}
-              required />
-            <Input  label="Token Secret"   name="ts" value={formData.ts}
-              onChange={handleChange}
-              required />
-            
-                <div className="flex gap-10">
-                    <Radio
-                      name="type"
-                      label="Ring Central"
-                      // ripple={true}
-                      id="ring"
-                      checked={selectedOption === "ring"}
-                      onChange={handleChange}
-                      value="ring" 
-                    />
-                    <Radio
-                      name="type"
-                      label="Twillio"
-                      // ripple={false}
-                      id="twilio"
-                      checked={selectedOption === "twi"}
-                      onChange={handleChange}
-                      value="twi"
-                    />
-                </div>
-            
-            {showOptions === "ring" && (
-                <Input type="JWT/Phone Number" label="Ring Central" name="ringcentral"  id="ringcentral"
-            value={formData.ringcentral}
-            onChange={apiHandleChange}
-            required/>  
-            )}    
-            {showOptions === "twi" && (
-                <Input type="Sid/Phone Number" label="Twilio"  name="twilio" id="twilio"
-            value={formData.twilio}
-            onChange={apiHandleChange}
-            required/>  
-            )}      
-          </CardBody>
-  
-            <Link to="/dashboard">
-                <Button variant="gradient" className="w-72">
-              Save
-            </Button></Link>
+          )}
+        </CardBody>
+        <div className="space-x-10">
+        <Button variant="gradient" className="w-72" onClick={handleSubmit}>
+            Save
+          </Button>
+          <Button variant="gradient" onClick={() => setPage(-1)}>
+              back
+          </Button>
+        </div>
+
       </div>
     </>
 

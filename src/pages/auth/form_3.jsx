@@ -1,73 +1,33 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from 'react-router-dom'
 import {
-  Card,
   CardHeader,
   CardBody,
-  CardFooter,
   Input,
   Button,
   Typography,
-  Radio,
 } from "@material-tailwind/react";
 
 
-const apiUrl = "http://localhost:8080"
-export const ContactForm3 = () => {
-    const [formData, setFormData] = useState({
-        accountname: "",
-        email: "",
-        name: "",
-        website: "",
-        address1: "",
-        address2: "",
-        city: "",
-        zipcode: "",
-        state: "",
-        phone: "",
-        sci: "",
-        scn: "",
-        tk: "",
-        ts: "",
-        twilio: "",
-        ringcentral: "",
-        highid: "",
-        hightoken: "",
-        highkey: "",
-        highsecret: "",
-        highphone: "",
-        sendid: "",
-        sendtoken: "",
-        sendphone: "",
-      });
-    
 
-  const [showOptions, setShowOptions] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
+export const ContactForm3 = ({ formData, setFormData, handleSubmit, setPage}) => {
 
-
+  const [sendSquaredData, setSendSquaredData] = useState({
+    type: "sendsquared  ",
+    company_id: "",
+    token: "",
+    phone_number: ""
+  })
+  
   const handleChange = (event) => {
+    let tmp = {...sendSquaredData}
+    tmp[event.target.name] = event.target.value
+    setSendSquaredData(tmp) 
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value,
+      ["account_type"]: tmp,
     });
-    setSelectedOption(event.target.value);
-    setShowOptions(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Send form data to server or handle form submission
-    axios({
-      method: "post",
-      url: apiUrl + "/save",
-      data: {
-        formData: formData
-      }
-    })
-    console.log(formData);
-  };
 
   return (
     <>
@@ -87,22 +47,25 @@ export const ContactForm3 = () => {
             </Typography>
           </CardHeader>
           <CardBody className="flex w-96 flex-col gap-4">
-            <Input label="Company ID" size="lg" id="sendid" name="sendid" value={formData.sendid}
+            <Input label="Company ID" size="lg" id="company_id" name="company_id" value={sendSquaredData.company_id}
               onChange={handleChange}
               required />
-            <Input label="Token" size="lg" id="sendtoken" name="sendtoken" value={formData.sendtoken}
+            <Input label="Token" size="lg" id="token" name="token" value={sendSquaredData.token}
               onChange={handleChange}
               required />
-            <Input type="text" label="Phone Number" size="lg" id="sendphone" name="sendphone" value={formData.sendphone}
+            <Input type="text" label="Phone Number" size="lg" id="phone_number" name="phone_number" value={sendSquaredData.phone_number}
               onChange={handleChange}
               required />
           </CardBody>
 
-            <Link to="/dashboard">
-                <Button variant="gradient" className="w-96">
+          <div className="space-x-10">
+            <Button variant="gradient" className="w-96" onClick={handleSubmit}>
               Save
-            </Button></Link>
-
+            </Button>
+            <Button variant="gradient" onClick={() => setPage(-1)}>
+              back
+            </Button>
+            </div>
       </div>
     </>
 

@@ -17,7 +17,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 export function Tables() {
 
-  const [data, setData] = useState(authorsTableData)
+  const [data, setData] = useState([])
   const [open, setOpen] = useState(false);
   const navigate = useNavigate()
 
@@ -68,14 +68,14 @@ export function Tables() {
               </thead>
               <tbody>
                 {data.map(
-                  ({ name, email, job, online, date }, key) => {
+                  (itm, key) => {
                     const className = `py-3 px-5 ${key === data.length - 1
                       ? ""
                       : "border-b border-blue-gray-50"
                       }`;
 
                     return (
-                      <tr key={name}>
+                      <tr key={itm.name}>
                         <td className={className}>
                           <div className="flex items-center gap-4">
                             <div>
@@ -84,30 +84,30 @@ export function Tables() {
                                 color="blue-gray"
                                 className="font-semibold"
                               >
-                                {name}
+                                {itm.name}
                               </Typography>
                               <Typography className="text-xs font-normal text-blue-gray-500">
-                                {email}
+                                {itm.email}
                               </Typography>
                             </div>
                           </div>
                         </td>
                         <td className={className}>
                           <Typography className="text-xs font-semibold text-blue-gray-600">
-                            {job[0]}
+                            {itm.city}
                           </Typography>
                           <Typography className="text-xs font-normal text-blue-gray-500">
-                            {job[1]}
+                            {itm.city}
                           </Typography>
                         </td>
-                        <td className={className}>
+                        {/* <td className={className}>
                           <Chip
                             variant="gradient"
                             color={online ? "green" : "blue-gray"}
                             value={online ? "online" : "offline"}
                             className="py-0.5 px-2 text-[11px] font-medium"
                           />
-                        </td>
+                        </td> */}
                         <td className={className}>
                           <Typography className="text-xs font-semibold text-blue-gray-600">
                             <Button className="rounded-full bg-white text-red">Delete</Button>
