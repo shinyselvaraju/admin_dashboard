@@ -32,11 +32,11 @@ export function Tables() {
   return (
     <React.Fragment>
       <Dialog
-        size="xl"
+        size="xxl"
         open={open}
         handler={handleOpen}
         className="bg-transparent shadow-none"
-        children=<Chats></Chats>
+        children=<Chats setOpen={setOpen}></Chats>
       > 
       </Dialog>
 
@@ -51,7 +51,7 @@ export function Tables() {
             <table className="w-full min-w-[640px] table-auto">
               <thead>
                 <tr>
-                  {["Name", "Pos", "Status", "", ""].map((el) => (
+                  {["Name", "Email", "Phone", "Address", "Website", "Account Type", "", ""].map((el) => (
                     <th
                       key={el}
                       className="border-b border-blue-gray-50 py-3 px-5 text-left"
@@ -86,20 +86,42 @@ export function Tables() {
                               >
                                 {itm.name}
                               </Typography>
-                              <Typography className="text-xs font-normal text-blue-gray-500">
+                              {/* <Typography className="text-xs font-normal text-blue-gray-500">
                                 {itm.email}
-                              </Typography>
+                              </Typography> */}
                             </div>
                           </div>
                         </td>
                         <td className={className}>
                           <Typography className="text-xs font-semibold text-blue-gray-600">
-                            {itm.city}
-                          </Typography>
-                          <Typography className="text-xs font-normal text-blue-gray-500">
-                            {itm.city}
+                            {itm.email} 
                           </Typography>
                         </td>
+                        <td className={className}>
+                          <Typography className="text-xs font-semibold text-blue-gray-600">
+                            {itm.phone} 
+                          </Typography>
+                        </td>
+                        <td className={className}>
+                          <Typography className="text-xs font-semibold text-blue-gray-600">
+                            {itm.address_1}, {itm.address_2}, {itm.city}, {itm.state}, {itm.zipcode} 
+                          </Typography>
+                          {/* <Typography className="text-xs font-normal text-blue-gray-500">
+                            {itm.city}
+                          </Typography> */}
+
+                        </td>
+                        <td className={className}>
+                          <Typography className="text-xs font-semibold text-blue-gray-600">
+                            {itm.website} 
+                          </Typography>
+                        </td>
+                        <td className={className}>
+                          <Typography className="text-xs font-semibold text-blue-gray-600">
+                            {JSON.stringify(itm.account_type)} 
+                          </Typography>
+                        </td>
+
                         {/* <td className={className}>
                           <Chip
                             variant="gradient"

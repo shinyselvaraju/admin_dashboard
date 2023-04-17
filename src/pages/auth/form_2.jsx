@@ -18,7 +18,8 @@ export const ContactForm2 = ({ formData, setFormData, handleSubmit, setPage}) =>
     token_secrect: "",
     api_type: {
       name: "",
-      input: ""
+      id: "",
+      phone_number:"",
     }
   })
 
@@ -36,7 +37,6 @@ export const ContactForm2 = ({ formData, setFormData, handleSubmit, setPage}) =>
     let tmp = {...streamlineData}
     let api_type = {
       name: event.target.value,
-      input: ""
     }
     tmp["api_type"] = api_type
     setStreamlineData(tmp);
@@ -48,7 +48,17 @@ export const ContactForm2 = ({ formData, setFormData, handleSubmit, setPage}) =>
 
   const handleInput = (event) => {
     let tmp = {...streamlineData}
-    tmp.api_type.input = event.target.value
+
+    switch (event.target.name) {
+      case "id":
+        tmp.api_type.id = event.target.value
+        break;
+      case "phno":
+        tmp.api_type.phone_number = event.target.value
+        break
+      default:
+        break;
+    }
     setStreamlineData(tmp);
     setFormData({
       ...formData,
@@ -109,14 +119,26 @@ export const ContactForm2 = ({ formData, setFormData, handleSubmit, setPage}) =>
           </div>
 
           {streamlineData.api_type.name === "ring" && (
-            <Input type="JWT/Phone Number" label="Ring Central" name="ringcentral" id="ringcentral"
-              value={streamlineData.api_type.input}
+            <Input type="JWT/Phone Number" label="JWT" name="id"
+              value={streamlineData.api_type.id}
+              onChange={handleInput}
+              required />
+          )}
+          {streamlineData.api_type.name === "ring" && (
+            <Input type="JWT/Phone Number" label="Phone Number" name="phno" 
+              value={streamlineData.api_type.phone_number}
               onChange={handleInput}
               required />
           )}
           {streamlineData.api_type.name === "twillio" && (
-            <Input type="Sid/Phone Number" label="Twillio" name="twillio" id="twillio"
-              value={streamlineData.api_type.input}
+            <Input type="Sid/Phone Number" label="SID" name="id" 
+              value={streamlineData.api_type.id}
+              onChange={handleInput}
+              required />
+          )}
+          {streamlineData.api_type.name === "twillio" && (
+            <Input type="Sid/Phone Number" label="Phone Number" name="phno" 
+              value={streamlineData.api_type.phone_number}
               onChange={handleInput}
               required />
           )}
