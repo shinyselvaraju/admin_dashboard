@@ -14,6 +14,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { apiUrl } from "@/constant/const";
 
 export function Tables() {
 
@@ -24,7 +25,7 @@ export function Tables() {
   const handleOpen = () => setOpen((cur) => !cur);
 
   useEffect(() => {
-    axios.get('http://localhost:8081/users')
+    axios.get(apiUrl + '/users')
       .then(res => setData(res.data))
       .catch(err => console.log(err))
   }, [])

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import {ContactForm1, ContactForm2, ContactForm3, ContactForm4} from "../auth"
 import axios from "axios";
+import { apiUrl } from "@/constant/const";
 
-const apiUrl = "http://localhost:8081"
 export const Create = () => {
     const [formData, setFormData] = useState({
         name: "",
